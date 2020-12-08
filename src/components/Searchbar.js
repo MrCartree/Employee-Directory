@@ -1,7 +1,7 @@
 import React from "react";
 import "./Searchbar.css";
 
-function SearchBar({ inputValue, handleInput, handleSubmit }) {
+function SearchBar({ inputValue, handleInput }) {
     return(
     <div>
         <input 

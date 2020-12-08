@@ -1,16 +1,10 @@
 import React from "react";
 import "./TableHead.css"
 
-function TableHead() {
+function TableHead({columns}) {
     return (
         <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>Hired</th>
-                <th>Salary</th>
-            </tr>
+            <tr>{columns.map((columns, i) => <th key={i} >{columns.colName}</th>)}</tr>
         </thead>
 
     )
