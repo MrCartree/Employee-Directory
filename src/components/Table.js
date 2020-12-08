@@ -19,7 +19,7 @@ function Table({ employees }) {
                 <TableHead columns={columns} />
                 <tbody>
                     { employees.map(person => {
-                        return <TableBody {...person} data={employees} />
+                        return <TableBody key={person.id} {...person} data={employees} />
                     }) }
                 </tbody>
             </table>
