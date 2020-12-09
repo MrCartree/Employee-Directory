@@ -10,7 +10,7 @@ function SearchBar({ inputValue, handleInput }) {
             name="name"
             value={ inputValue }
             placeholder="Type stuff to search or something."
-            onChange={ handleInput }
+            onChange={handleInput}
         />
     </div>
     )

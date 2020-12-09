@@ -1,5 +1,4 @@
 import React from "react";
-import {Employees} from "./Employee"
 import './App.css';
 import Header from "./components/Heading";
 import SearchBar from "./components/Searchbar";
@@ -7,30 +6,34 @@ import Dropdown from "./components/Dropdown";
 import Table from "./components/Table"
 
 
-function App() {
-
-  const [ inputValue, setInputValue ] = React.useState(null)
-  const [ dataValue, setDataValue ] = React.useState(Employees)
+function App(props) {
+  const [ inputValue, setInputValue ] = React.useState('')
+  const [ dataValue, setDataValue ] = React.useState(props.employees);
   const [ sortValue, setSortValue ] =React.useState("")
 
   const handleInput = e => {
-    setInputValue(e.target.value) 
-    console.log(dataValue)
-    console.log(inputValue)
-    if (inputValue === null) {
-      return dataValue
-    } else if (dataValue.filter(person => {
-      person.name.toLowerCase().includes(inputValue.toLowerCase())
-    })) {
-      setDataValue(dataValue.filter(person => {
-        return person.name.toLowerCase().includes(inputValue.toLowerCase().trim())
-      }))
-    }
+    setInputValue(e.target.value);
   }
 
+  React.useEffect(() => {
+    if (inputValue === '') {
+      setDataValue(props.employees);
+      return;
+    }
+
+    const people = props.employees.filter((person) => {
+      return person.name.toLowerCase().includes(inputValue.toLowerCase());
+    });
+
+    if (people.length) {
+      setDataValue(people);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inputValue]);
+
   const handleSortValue = (e) => {
-    setDataValue(Employees)
-    setSortValue(e.target.value)
+    setDataValue(props.employees);
+    setSortValue(e.target.value);
   }
 
   if(sortValue === "Name (A - Z)") {
