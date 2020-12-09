@@ -1,5 +1,4 @@
 import React from "react";
-import "./TableBody.css";
 
 function TableBody({ name, email, address, created, balance }) {
     return (
